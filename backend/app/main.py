@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import io
 import logging
+import os
 
 import pandas as pd
 from fastapi import FastAPI, File, HTTPException, UploadFile
@@ -30,10 +31,15 @@ app = FastAPI(
     ),
 )
 
-# Loosen for local dev; restrict to the real frontend origin(s) before deploying.
+# ALLOWED_ORIGINS env var: comma-separated list of allowed origins.
+# Set on Render to your Vercel URL e.g. "https://your-app.vercel.app"
+# Defaults to "*" for local dev.
+_raw_origins = os.getenv("ALLOWED_ORIGINS", "*")
+_origins = [o.strip() for o in _raw_origins.split(",")] if _raw_origins != "*" else ["*"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=_origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )

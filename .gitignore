@@ -1,8 +1,43 @@
+# Python
 .venv/
+venv/
 __pycache__/
 *.py[cod]
-.idea/
-.env
-node_modules/
+*.pyo
+*.pyd
+.Python
+*.egg-info/
 dist/
 build/
+.pytest_cache/
+.mypy_cache/
+
+# Env files
+.env
+.env.local
+.env.production
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env.production
+
+# Root
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+notebook/.ipynb_checkpoints/
+
+# Do NOT ignore model artifacts — they must be committed for Render to access them
+# backend/model_artifacts/  ← intentionally not ignored
