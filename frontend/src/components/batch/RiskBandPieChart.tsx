@@ -41,13 +41,14 @@ function CustomLegend({ payload }: any) {
 }
 
 export default function RiskBandPieChart({ summary }: RiskBandPieChartProps) {
-  const data: { name: RiskBand; value: number }[] = [
-    { name: 'Very Low',  value: summary.n_very_low_risk  },
-    { name: 'Low',       value: summary.n_low_risk       },
-    { name: 'Medium',    value: summary.n_medium_risk    },
-    { name: 'High',      value: summary.n_high_risk      },
-    { name: 'Very High', value: summary.n_very_high_risk },
-  ].filter((d) => d.value > 0)
+  const rawData = [
+    { name: 'Very Low'  as RiskBand, value: summary.n_very_low_risk  },
+    { name: 'Low'       as RiskBand, value: summary.n_low_risk       },
+    { name: 'Medium'    as RiskBand, value: summary.n_medium_risk    },
+    { name: 'High'      as RiskBand, value: summary.n_high_risk      },
+    { name: 'Very High' as RiskBand, value: summary.n_very_high_risk },
+  ]
+  const data = rawData.filter((d) => d.value > 0)
 
   return (
     <ResponsiveContainer width="100%" height={240}>
